@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weChat.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.weChat.entity.Article">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="TYPE_UUID" jdbcType="VARCHAR" property="typeUuid"/>
+        <result column="IMAGE_TYPE" jdbcType="VARCHAR" property="imageType"/>
+        <result column="IMAGE_PATH" jdbcType="VARCHAR" property="imagePath"/>
+        <result column="TITLE" jdbcType="VARCHAR" property="title"/>
+        <result column="PUBLISHER_UUID" jdbcType="VARCHAR" property="publisherUuid"/>
+        <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="CONTENT" jdbcType="LONGVARCHAR" property="content"/>
+    </resultMap>
+</mapper>

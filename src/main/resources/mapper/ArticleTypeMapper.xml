@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weChat.mapper.ArticleTypeMapper">
+    <resultMap id="BaseResultMap" type="com.weChat.entity.ArticleType">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ARTICLETYPE_UUID" jdbcType="VARCHAR" property="articletypeUuid"/>
+        <result column="ARTICLETYPE_NAME" jdbcType="VARCHAR" property="articletypeName"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+    </resultMap>
+</mapper>
