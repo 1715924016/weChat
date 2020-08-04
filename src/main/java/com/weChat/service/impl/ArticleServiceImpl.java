@@ -37,8 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Map<String, Object>> queryAllArticleByType(String articleTypeId) {
         //Object
-        List<Map<String, Object>> list = new ArrayList<>();
-        Map<String, Object> map = new HashMap<String, Object>();
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
         // 查询选择文章类型下的所有处于审核通过的文章
         Example example = new Example(Article.class);
@@ -50,11 +49,12 @@ public class ArticleServiceImpl implements ArticleService {
         // 循环遍历
         if (listR.size() > 0) {
             for (Article at : listR) {
-                map.clear();
                 // 获取此篇文章的作者
                 ArticlePublisher articlePublisher = articlePublisherService.queryPublisherByPId(at.getPublisherUuid());
                 // 判断作者现在状态：作者信息不为空且作者位处于被封号状态
-                if (ObjectUtils.isNotEmpty(articlePublisher.getStatus()) && articlePublisher.getStatus() == "1") {
+                final String status = articlePublisher.getStatus();
+                Map<String, Object> map = new HashMap<String, Object>();
+                if ("1".equalsIgnoreCase(status)) {
                     map.put("article", at);
                     map.put("publisher", articlePublisher);
                     list.add(map);

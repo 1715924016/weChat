@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,8 +34,8 @@ public class ArticleController {
      * @Author: https://home.cnblogs.com/u/90s-ITBoy/
      * @Date: 2020/8/4 11:18
      **/
-    @GetMapping("/queryAllArticleByType")
-    public JSONResult queryAllArticleByType(String articleTypeId) {
+    @GetMapping("/queryAllArticleByType/{articleTypeId}")
+    public JSONResult queryAllArticleByType(@PathVariable String articleTypeId) {
         logger.info("根据类型查文章：queryAllArticleByType");
         List<Map<String, Object>> result = articleService.queryAllArticleByType(articleTypeId);
         return JSONResult.ok(result);
