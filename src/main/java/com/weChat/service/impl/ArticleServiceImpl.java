@@ -5,7 +5,6 @@ import com.weChat.entity.ArticlePublisher;
 import com.weChat.mapper.ArticleMapper;
 import com.weChat.service.ArticlePublisherService;
 import com.weChat.service.ArticleService;
-import com.weChat.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -61,7 +60,6 @@ public class ArticleServiceImpl implements ArticleService {
                 }
             }
         }
-
         return list;
     }
 }
