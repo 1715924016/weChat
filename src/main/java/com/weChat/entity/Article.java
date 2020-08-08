@@ -1,8 +1,11 @@
 package com.weChat.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
+@Table(name = "article")
 public class Article {
     /**
      * 表主键 - uuid
@@ -24,8 +27,8 @@ public class Article {
     private String imageType;
 
     /**
-     * 当image_type不为空时image_path不为空
-     * [“”，“”]    json串的形式
+     * 当image_type不为"0"时，image_path不为空；
+     * [“”，“”]  json串的形式
      */
     @Column(name = "IMAGE_PATH")
     private String imagePath;
@@ -47,6 +50,12 @@ public class Article {
      */
     @Column(name = "PUBLISH_TIME")
     private Date publishTime;
+
+    /**
+     * 文章状态；审核未通过:0;审核已通过:1;  强制下架:2;
+     */
+    @Column(name = "STATUS")
+    private String status;
 
     /**
      * 文章内容
@@ -109,22 +118,22 @@ public class Article {
     }
 
     /**
-     * 获取当image_type不为空时image_path不为空
-     * [“”，“”]    json串的形式
+     * 获取当image_type不为"0"时，image_path不为空；
+     * [“”，“”]  json串的形式
      *
-     * @return IMAGE_PATH - 当image_type不为空时image_path不为空
-     * [“”，“”]    json串的形式
+     * @return IMAGE_PATH - 当image_type不为"0"时，image_path不为空；
+     * [“”，“”]  json串的形式
      */
     public String getImagePath() {
         return imagePath;
     }
 
     /**
-     * 设置当image_type不为空时image_path不为空
-     * [“”，“”]    json串的形式
+     * 设置当image_type不为"0"时，image_path不为空；
+     * [“”，“”]  json串的形式
      *
-     * @param imagePath 当image_type不为空时image_path不为空
-     *                  [“”，“”]    json串的形式
+     * @param imagePath 当image_type不为"0"时，image_path不为空；
+     *                  [“”，“”]  json串的形式
      */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath == null ? null : imagePath.trim();
@@ -182,6 +191,24 @@ public class Article {
      */
     public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
+    }
+
+    /**
+     * 获取文章状态；审核未通过:0;审核已通过:1;  强制下架:2;
+     *
+     * @return STATUS - 文章状态；审核未通过:0;审核已通过:1;  强制下架:2;
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置文章状态；审核未通过:0;审核已通过:1;  强制下架:2;
+     *
+     * @param status 文章状态；审核未通过:0;审核已通过:1;  强制下架:2;
+     */
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     /**

@@ -5,8 +5,8 @@ import com.weChat.mapper.ArticleTypeMapper;
 import com.weChat.service.ArticleTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,20 +16,20 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
     private ArticleTypeMapper articleTypeMapper;
 
     /**
-     * @return List<ArticleType>
-     * @Description: 查询所有文章类型；
-     */
+     * 功能描述:
+     * 〈查询所有文章类型〉
+     *
+     * @Param: []
+     * @Return: java.util.List<com.weChat.entity.ArticleType>
+     * @Author: https://home.cnblogs.com/u/90s-ITBoy/
+     * @Date: 2020/8/4 11:18
+     **/
     public List<ArticleType> queryAllType() {
-        List<ArticleType> types = new ArrayList<ArticleType>();
-        List<ArticleType> articleTypes = articleTypeMapper.selectAll();
-        // 只获取有效数据：status:0
-        if (articleTypes.size() > 0) {
-            for (ArticleType at : articleTypes) {
-                if ("0".equalsIgnoreCase(at.getStatus())) {
-                    types.add(at);
-                }
-            }
-        }
-        return types;
+
+        Example example = new Example(ArticleType.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("status", "1");
+
+        return articleTypeMapper.selectByExample(example);
     }
 }

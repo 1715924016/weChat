@@ -12,6 +12,7 @@
         <result column="TITLE" jdbcType="VARCHAR" property="title"/>
         <result column="PUBLISHER_UUID" jdbcType="VARCHAR" property="publisherUuid"/>
         <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
         <result column="CONTENT" jdbcType="LONGVARCHAR" property="content"/>
     </resultMap>
 </mapper>

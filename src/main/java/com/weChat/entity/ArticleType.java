@@ -1,6 +1,8 @@
 package com.weChat.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "article_type")
 public class ArticleType {
@@ -18,7 +20,7 @@ public class ArticleType {
     private String articletypeName;
 
     /**
-     * 类型状态（0:启用，1:停用），停用时不给予显示相应文章；
+     * 类型状态（1:启用，0:停用），停用时不给予显示相应文章；
      */
     @Column(name = "STATUS")
     private String status;
@@ -60,18 +62,18 @@ public class ArticleType {
     }
 
     /**
-     * 获取类型状态（0:启用，1:停用），停用时不给予显示相应文章；
+     * 获取类型状态（1:启用，0:停用），停用时不给予显示相应文章；
      *
-     * @return STATUS - 类型状态（0:启用，1:停用），停用时不给予显示相应文章；
+     * @return STATUS - 类型状态（1:启用，0:停用），停用时不给予显示相应文章；
      */
     public String getStatus() {
         return status;
     }
 
     /**
-     * 设置类型状态（0:启用，1:停用），停用时不给予显示相应文章；
+     * 设置类型状态（1:启用，0:停用），停用时不给予显示相应文章；
      *
-     * @param status 类型状态（0:启用，1:停用），停用时不给予显示相应文章；
+     * @param status 类型状态（1:启用，0:停用），停用时不给予显示相应文章；
      */
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();

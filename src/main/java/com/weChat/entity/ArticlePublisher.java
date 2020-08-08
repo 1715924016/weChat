@@ -1,6 +1,8 @@
 package com.weChat.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "article_publisher")
 public class ArticlePublisher {
@@ -24,7 +26,7 @@ public class ArticlePublisher {
     private String publisherImage;
 
     /**
-     * 发布者状态（0:启用，1:停用），停用时不可发布文章且之前文章不给予展示
+     * 发布者状态（1:启用，0:停用），停用时不可发布文章且之前文章不给予展示
      */
     @Column(name = "STATUS")
     private String status;
@@ -84,18 +86,18 @@ public class ArticlePublisher {
     }
 
     /**
-     * 获取发布者状态（0:启用，1:停用），停用时不可发布文章且之前文章不给予展示
+     * 获取发布者状态（1:启用，0:停用），停用时不可发布文章且之前文章不给予展示
      *
-     * @return STATUS - 发布者状态（0:启用，1:停用），停用时不可发布文章且之前文章不给予展示
+     * @return STATUS - 发布者状态（1:启用，0:停用），停用时不可发布文章且之前文章不给予展示
      */
     public String getStatus() {
         return status;
     }
 
     /**
-     * 设置发布者状态（0:启用，1:停用），停用时不可发布文章且之前文章不给予展示
+     * 设置发布者状态（1:启用，0:停用），停用时不可发布文章且之前文章不给予展示
      *
-     * @param status 发布者状态（0:启用，1:停用），停用时不可发布文章且之前文章不给予展示
+     * @param status 发布者状态（1:启用，0:停用），停用时不可发布文章且之前文章不给予展示
      */
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
