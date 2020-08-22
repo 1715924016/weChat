@@ -5,11 +5,11 @@ import com.weChat.utils.JSONResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +38,22 @@ public class ArticleController {
     public JSONResult queryAllArticleByType(@PathVariable String articleTypeId) {
         logger.info("根据类型查文章：queryAllArticleByType");
         List<Map<String, Object>> result = articleService.queryAllArticleByType(articleTypeId);
+        return JSONResult.ok(result);
+    }
+
+    /**
+     * 功能描述:
+     * 〈上传图片〉
+     *
+     * @Param: [uploadPhoto]
+     * @Return: com.weChat.utils.JSONResult
+     * @Author: https://home.cnblogs.com/u/90s-ITBoy/
+     * @Date: 2020年8月22日
+     **/
+    @PostMapping("/uploadPhoto")
+    public JSONResult uploadPhoto(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        logger.info("根据类型查文章：queryAllArticleByType");
+        List<LinkedHashMap<String, Object>> result = articleService.uploadPhoto(request, file);
         return JSONResult.ok(result);
     }
 }

@@ -5,20 +5,25 @@ import com.weChat.entity.ArticlePublisher;
 import com.weChat.mapper.ArticleMapper;
 import com.weChat.service.ArticlePublisherService;
 import com.weChat.service.ArticleService;
+import com.weChat.utils.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleMapper articleMapper;
+
+    // 上传图片地址路径
+    @Value("${upload.photo.dir}")
+    private String uploadPhotoDir;
 
     @Autowired
     private ArticlePublisherService articlePublisherService;
@@ -61,5 +66,29 @@ public class ArticleServiceImpl implements ArticleService {
             }
         }
         return list;
+    }
+
+    /**
+     * 功能描述:
+     * 〈上传图片〉
+     *
+     * @Param: [uploadPhoto]
+     * @Return: com.weChat.utils.JSONResult
+     * @Author: https://home.cnblogs.com/u/90s-ITBoy/
+     * @Date: 2020年8月22日
+     **/
+    @Override
+    public List<LinkedHashMap<String, Object>> uploadPhoto(HttpServletRequest request, MultipartFile file) {
+        List<LinkedHashMap<String, Object>> li = new ArrayList<LinkedHashMap<String, Object>>();
+        LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+        LinkedHashMap<String,String> uploadMap = UploadUtil.uploadPhoto(request, file, uploadPhotoDir);
+        if("SUCCESS".equalsIgnoreCase((uploadMap.get("result").toString()))){
+            map.put("destFileName", uploadMap.get("destFileName"));
+        }else{
+            map.put("uploadPhoto","FAIL");
+
+        }
+        li.add(map);
+        return li;
     }
 }
